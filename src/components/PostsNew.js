@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { connect } from 'react-redux'
+import { createPost } from '../actions';
 
 class PostsNew extends Component {
   renderField(field) {
+    const { touched, error } = field.meta;
+    const className = `form-group ${touched && error ? 'has-danger' : ''}`;
+
     return (
-      <div className="form-group">
+      <div className={className}>
         <label>{field.label}</label>
-        <input className="form-control" {...field.input} />
-        {field.meta.touched ? field.meta.error : ''}
+        <input className="form-control" {...field.input}/>
+        <div className="text-help">
+          {touched ? error : ''}
+        </div>
       </div>
     );
   }
 
   onSubmit(values) {
-    // console.log(values);
-    console.log(this.props);
+    this.props.createPost(values, () => {
+      this.props.history.push('/');
+    });
   }
 
   render() {
@@ -33,6 +43,7 @@ class PostsNew extends Component {
           component={this.renderField}
         />
         <button className="btn btn-primary" type="submit" disabled={!this.props.valid}>Submit</button>
+        <Link className="btn btn-secondary" to="/">Cancel</Link>
       </form>
     );
   }
@@ -62,4 +73,6 @@ function validate(values) {
 export default reduxForm({
   validate,
   form: 'PostsNewForm'
-})(PostsNew);
+})(
+  connect(null, {createPost})(PostsNew)
+);

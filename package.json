@@ -1,7 +1,7 @@
 {
-  "name": "redux-simple-starter",
+  "name": "react-redux-blog-app",
   "version": "1.0.0",
-  "description": "Simple starter package for Redux with React and Babel support",
+  "description": "simple blog app follow Stephen Grider's Modern React with Redux Udemy Course",
   "main": "index.js",
   "repository": "git@github.com:StephenGrider/ReduxSimpleStarter.git",
   "scripts": {
@@ -9,7 +9,7 @@
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch"
   },
-  "author": "",
+  "author": "Kim Nejudne",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.2.1",
@@ -20,11 +20,15 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-preset-stage-1": "^6.1.18",
     "lodash": "^3.10.1",
     "react": "16.3.2",
     "react-dom": "16.3.2",
-    "react-redux": "5.0.7",
-    "redux": "4.0.0"
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "redux": "^4.0.0",
+    "redux-form": "^6.6.3",
+    "redux-promise": "^0.6.0"
   }
 }

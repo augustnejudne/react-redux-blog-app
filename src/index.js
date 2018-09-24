@@ -10,12 +10,16 @@ import PostsIndex from './components/PostsIndex';
 import PostsNew from './components/PostsNew';
 import PostsShow from './components/PostsShow';
 
+/**
+ * I use ReduxPromise as middleware
+ */
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
       <Switch>
+        {/* Make sure to put the root path at the bottom */}
         <Route path="/posts/new" component={PostsNew} />
         <Route path="/posts/:id" component={PostsShow} />
         <Route path="/" component={PostsIndex} />

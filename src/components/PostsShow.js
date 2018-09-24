@@ -1,18 +1,34 @@
+/**
+ * PostsIndex.js
+ * author:          Kim Nejudne
+ * description:     This is the root '/post/:id' component,
+ *                  component shows the particular post and its contents
+ */
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchPost, deletePost } from '../actions';
 
 class PostsShow extends Component {
+  /**
+   * after the component renders,
+   * if there is no props.post,
+   * call the fetchPost action creator
+   * the id is provided by the this.props.match.params.id property
+   *    which is provided by the Route compnent from react-router-dom
+   */
   componentDidMount() {
     if (!this.props.post) {
       const id = this.props.match.params.id;
-      this.props.fetchPost(id, () => {
-        console.log(this.props);
-      });
+      this.props.fetchPost(id);
     }
   }
 
+  /**
+   * deletes the currently viewed poast
+   * and redirects to /
+   */
   handleClick = () => {
     const id = this.props.match.params.id;
     this.props.deletePost(id, () => {

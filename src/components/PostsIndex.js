@@ -1,7 +1,8 @@
 /**
  * PostsIndex.js
  * author:          Kim Nejudne
- * description:     This is the root '/' component
+ * description:     This is the root '/' component,
+ *                  component GETs all posts from the api, displays their titles
  */
 
 import React, { Component } from "react";
@@ -17,12 +18,9 @@ class PostsIndex extends Component {
    */
   componentDidMount() {
     /**
-     * if there is no post state loaded
      * call the fetchPosts action creator
      */
-    if (!this.props.posts) {
-      this.props.fetchPosts();
-    }
+    this.props.fetchPosts();
   }
 
   // this function renders the fetched posts
@@ -44,6 +42,8 @@ class PostsIndex extends Component {
             /**
              * delete button
              * calls the deletePost action creator
+             * deletes the post in the database
+             * deletes the rendered post in the state
              */
           }
           <button
